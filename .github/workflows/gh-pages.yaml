@@ -17,15 +17,15 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Publish
-        run: dotnet publish BlazorLab/BlazorLab.csproj --configuration Release --output publish
+        run: dotnet publish BlazorLab/BlazorLab.csproj --configuration Release
 
       - name: Add .nojekyll file
-        run: touch publish/wwwroot/.nojekyll
+        run: touch BlazorLab/bin/Release/net6.0/publish/wwwroot/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: publish/wwwroot
+          publish_dir: BlazorLab/bin/Release/net6.0/publish/wwwroot
           force_orphan: true
